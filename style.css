@@ -17,23 +17,45 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px 0 10px 0;
+  padding: 50px 0 20px 0;
   background-color: white;
   z-index: 10;
 }
 
 .logo-container img {
-  max-width: 200px;
+  max-width: 1000px;
   height: auto;
 }
 
 /* ======== CONTAINER DO JOGO ======== */
 #container {
   width: 835px;
-  height: 400px;
+  height: auto;
   position: relative;
-  margin: 50px auto 0 auto; /* adiciona espaço abaixo da logo */
+  margin: 50px auto 0 auto;
 }
+
+#bug-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #ff5e5e;
+  color: white;
+  font-size: 24px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 10000;
+  transition: background-color 0.3s ease;
+}
+
+#bug-button:hover {
+  background-color: #e04848;
+}
+
 
 /* ======== TIMER ======== */
 #timer {
@@ -43,7 +65,7 @@ body, html {
   font-weight: 600;
   color: #333;
   border-radius: 8px;
-  display: none; /* será ativado via JS */
+  display: none;
   width: fit-content;
   margin: 20px auto;
   text-align: center;
@@ -67,7 +89,6 @@ body, html {
   height: 400px;
   width: 800px;
   border-radius: 15px;
-  background-image: url("https://i.ibb.co/Y4L0rS2x/Copilot-20251015-090454.png");
   background-size: cover;
   background-position: center;
 }
@@ -162,6 +183,60 @@ body, html {
   position: relative;
 }
 
+.cover-lost {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.38);
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.cover-lost .score {
+  margin: 13% auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #666;
+  width: 300px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  position: relative;
+  text-align: center;
+}
+
+.cover-lost .button {
+  margin: 10px;
+  display: inline-block;
+}
+
+.explosion-animation {
+  width: 150px;
+  height: 150px;
+  background: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExemR2ZWpqNWs5NnVuOHp3cWZrdXhxZ2IwczE1MnMwandjZjJmcGFzNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/lSPSEDnyv6oPEzwi2C/giphy.gif') center center no-repeat;
+  background-size: contain;
+  margin: 20px auto;
+}
+
+.voucher-content {
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin-top: 10px;
+}
+
+.voucher-content h3 {
+  margin-bottom: 10px;
+}
+
+.voucher-content .validity {
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px;
+}
+
+
 #scr_head, #scr_time, #scr_moves {
   text-align: center;
   font-weight: 600;
@@ -174,19 +249,13 @@ body, html {
 
 .start {
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 18px 45px;
+  z-index: 1000;
 }
 
-.reset {
-  position: absolute;
-  margin: 0 auto;
-  padding: 18px 45px;
-  left: 50%;
-  transform: translate(-50%, 120px);
-}
 
 .OK {
   padding: 8px 25px;
