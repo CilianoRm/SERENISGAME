@@ -1,3 +1,11 @@
+const voucherStock = {
+  "20% de desconto em massagens e drenagens": 20,
+  "30% de desconto em pilates": 2,
+  "30% de desconto em yoga": 2,
+  "100% de desconto em massagens e drenagens": 5
+};
+
+
 $(document).ready(function () {
     var box = $(".box"),
         orginal = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
@@ -64,9 +72,11 @@ $(document).ready(function () {
             "https://i.postimg.cc/Hx13tCZf/WhatsApp_Image_2024-03-22_at_10.14.11_AM.jpg",
             "https://i.postimg.cc/ydCnTzQt/WhatsApp_Image_202"
         ],
-        img = Math.floor(Math.random() * images.length);
+        img = Math.floor(Math.random() * images.length),
+        gameWon = false;
 
     $('.me').css({ "background-image": 'url(' + images[img] + ')' });
+    $('#reference-image').attr("src", images[img]);
 
     $(".start").click(function () {
         $(".start").addClass('prevent_click');
@@ -86,6 +96,20 @@ $(document).ready(function () {
         Start();
         return 0;
     });
+
+    function drawVoucher() {
+  const available = Object.entries(voucherStock)
+    .filter(([_, count]) => count > 0);
+
+  if (available.length === 0) return "⚠️ Todos os vouchers foram distribuídos.";
+
+  const randomIndex = Math.floor(Math.random() * available.length);
+  const [selectedVoucher, count] = available[randomIndex];
+
+  voucherStock[selectedVoucher]--; // reduz o estoque
+  return selectedVoucher;
+}
+
 
     function getRandomImageIndex(excludeIndex) {
         let newIndex;
@@ -127,12 +151,34 @@ $(document).ready(function () {
                 clearInterval(timerInterval);
                 date2 = new Date();
                 timeDifferece();
-                showScore(true); // venceu
+                gameWon = true;
+                showScore(true);
                 return 0;
             }
         });
         return 0;
     }
+
+    function preencherVoucher() {
+  const estoque = {
+    "20% de desconto em massagens e drenagens": 20,
+    "30% de desconto em pilates": 2,
+    "30% de desconto em yoga": 2,
+    "100% de desconto em massagens e drenagens": 5
+  };
+
+  // Gera uma lista com base no estoque
+  const lista = Object.entries(estoque).flatMap(([nome, qtd]) =>
+    Array(qtd).fill(nome)
+  );
+
+  // Sorteia um voucher
+  const sorteado = lista[Math.floor(Math.random() * lista.length)];
+
+  // Atualiza o texto no popup
+  $('#voucher-text').text(sorteado);
+}
+
 
     function startTimer() {
         timeLeft = 90;
@@ -145,7 +191,7 @@ $(document).ready(function () {
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
                 $(".me").addClass("prevent_click");
-                showScore(false); // perdeu
+                showScore(false);
             }
         }, 1000);
     }
@@ -207,13 +253,10 @@ $(document).ready(function () {
     }
 
     function changeBG(img) {
-        if (img != 3) {
-            $('.me').css({
-                "background-image": "url(" + images[img] + ")"
-            });
-        } else {
-            $('.me').css({ "background-image": "url(" + upIMG + ")" });
-        }
+        var imageUrl = img != 3 ? images[img] : upIMG;
+
+        $('.me').css({ "background-image": "url(" + imageUrl + ")" });
+        $('#reference-image').attr("src", imageUrl);
     }
 
     $('.pre_img li').hover(function () {
@@ -221,39 +264,79 @@ $(document).ready(function () {
         changeBG(img);
     });
 
-    function showScore(won) {
-        $('#min').html(mm);
-        $('#sec').html(ss);
-        $('#moves').html(moves);
-        if (won && timeLeft > 0) {
-            $('#bonus').html("🎉 Você ganhou um brinde!");
-        } else {
-            $('#bonus').html("⏱️ Tempo esgotado! Tente novamente.");
-        }
-        setTimeout(function () {
-            $('.cover').slideDown(350);
-        }, 1050);
-        return 0;
+   function showScore(won) {
+  $('#min').html(mm);
+  $('#sec').html(ss);
+  $('#moves').html(moves);
+
+  if (won && timeLeft > 0) {
+    $('#bonus').html("🎉 Você ganhou um brinde!");
+    preencherVoucher(); // define o texto do voucher
+    $('.cover').slideDown(350); // mostra tudo junto
+  } else {
+    setTimeout(function () {
+      $('.cover-lost').slideDown(350);
+    }, 1050);
+  }
+  return 0;
+}
+
+$('.OK').click(function () {
+    $('.cover').slideUp(350);
+    if (gameWon) {
+        window.location.href = "https://www.seulink.com.br"; // Altere para seu link
     }
+});
+
+$('.try-again').click(function () {
+    location.reload(); // reinicia o jogo
+});
+
+$('.exit-game').click(function () {
+    window.location.href = "https://cilianocarvalho.wixsite.com/serenisgame"; // Altere para seu link de saída
+});
+
 
     $('.OK').click(function () {
         $('.cover').slideUp(350);
+        if (gameWon) {
+            window.location.href = "https://cilianocarvalho.wixsite.com/serenisgame"; // 🔗 Altere para o link desejado
+        }
     });
 
-    $('.reset').click(function () {
-        clearInterval(timerInterval);
-        $(".tile").remove();
-        $("br").remove();
-        $(".full").show();
-        $(".start").show();
-        $(".pre_img, .start").removeClass("prevent_click");
-        $("#timer").hide();
-        $('#bonus').html("");
-        temp = orginal;
-        x = [];
-        moves = ss = mm = 0;
-        return 0;
-    });
+    // Botão reset removido
+    // $('.reset').click(function () {
+    //     clearInterval(timerInterval);
+    //     $(".tile").remove();
+    //     $("br").remove();
+    //     $(".full").show();
+    //     $(".start").show();
+    //     $(".pre_img, .start").removeClass("prevent_click");
+    //     $("#timer").hide();
+    //     $('#bonus').html("");
+    //     temp = orginal;
+    //     x = [];
+    //     moves = ss = mm = 0;
+    //     return 0;
+    // });
+	
+	$('#bug-button').click(function () {
+    clearInterval(timerInterval);
+    $(".tile").remove();
+    $("br").remove();
+    $(".full").show();
+    $(".start").show();
+    $(".pre_img, .start").removeClass("prevent_click");
+    $("#timer").hide();
+    $('#bonus').html("");
+    $('.cover').hide();
+    $('.cover-lost').hide();
+    temp = orginal;
+    x = [];
+    moves = ss = mm = 0;
+    gameWon = false;
+});
+
 
     $("#upfile1").click(function () {
         $("#file1").trigger('click');
