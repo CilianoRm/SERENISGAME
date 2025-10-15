@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Picture Puzzle Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    /* --- Centralizar logo --- */
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      margin-bottom: 40px; /* <-- aumenta o espaço entre a logo e o jogo */
+    }
+
+    .logo-container img {
+      max-width: 200px;
+      height: auto;
+    }
+
+    /* --- opcional: garantir que o jogo fique abaixo da logo --- */
+    #container {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+    
+<body>
+  <!-- Logo central superior -->
+  <div class="logo-container">
+    <img src="https://i.ibb.co/HD4xPmM2/Whats-App-Image-2025-10-13-at-19-44-41.jpg" alt="Logo do jogo">
+  </div>
+
+  <div id="container">	
+    <div id="timer">Tempo restante: 1:30</div>
+
+    <a href="#" class="button start">Start</a>
+    <div class="box">	
+      <div class="me full"></div>
+    </div>
+    <div align="center">
+      <a href="#" class="button reset" align="center">Reset</a>
+    </div>
+  </div>
+
+  <div class="cover">
+    <div class="score">
+      <p id="scr_head"> &#9875 Puzzel Solved &#9875</p>
+      <p id="scr_time"> Time : <span id="min">00</span> Min <span id="sec">00</span> Sec</p>
+      <p id="scr_moves"> Moves : <span id="moves"></span></p>
+      <p class="i">developed by mayur birle</p>
+      <div class="button OK">OK</div>
+    </div>
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script src="./script.js"></script>
+</body>
+</html>

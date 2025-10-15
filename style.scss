@@ -1,0 +1,222 @@
+/* ======== CONFIGURAÇÕES GERAIS ======== */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ======== LOGO SUPERIOR ======== */
+.logo-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 0 10px 0;
+  background-color: white;
+  z-index: 10;
+}
+
+.logo-container img {
+  max-width: 200px;
+  height: auto;
+}
+
+/* ======== CONTAINER DO JOGO ======== */
+#container {
+  width: 835px;
+  height: 400px;
+  position: relative;
+  margin: 50px auto 0 auto; /* adiciona espaço abaixo da logo */
+}
+
+/* ======== TIMER ======== */
+#timer {
+  background-color: #ccffcc;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  border-radius: 8px;
+  display: none; /* será ativado via JS */
+  width: fit-content;
+  margin: 20px auto;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+}
+
+/* ======== PEÇAS DO PUZZLE ======== */
+.me {
+  position: relative;
+  background-size: 800px 400px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin: 2.2px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: 0.2s;
+}
+
+.full {
+  height: 400px;
+  width: 800px;
+  border-radius: 15px;
+  background-image: url("https://i.ibb.co/Y4L0rS2x/Copilot-20251015-090454.png");
+  background-size: cover;
+  background-position: center;
+}
+
+/* ======== POSICIONAMENTO DAS PEÇAS ======== */
+.me_0 { height: 133.33px; width: 133.33px; background-position: -0px -0px; }
+.me_1 { height: 133.33px; width: 133.33px; background-position: -133.33px -0px; }
+.me_2 { height: 133.33px; width: 133.33px; background-position: -266.66px -0px; }
+.me_3 { height: 133.33px; width: 133.33px; background-position: -399.99px -0px; }
+.me_4 { height: 133.33px; width: 133.33px; background-position: -533.32px -0px; }
+.me_5 { height: 133.33px; width: 133.33px; background-position: -666.65px -0px; }
+.me_6 { height: 133.33px; width: 133.33px; background-position: -0px -133.33px; }
+.me_7 { height: 133.33px; width: 133.33px; background-position: -133.33px -133.33px; }
+.me_8 { height: 133.33px; width: 133.33px; background-position: -266.66px -133.33px; }
+.me_9 { height: 133.33px; width: 133.33px; background-position: -399.99px -133.33px; }
+.me_10 { height: 133.33px; width: 133.33px; background-position: -533.32px -133.33px; }
+.me_11 { height: 133.33px; width: 133.33px; background-position: -666.65px -133.33px; }
+.me_12 { height: 133.33px; width: 133.33px; background-position: -0px -266.66px; }
+.me_13 { height: 133.33px; width: 133.33px; background-position: -133.33px -266.66px; }
+.me_14 { height: 133.33px; width: 133.33px; background-position: -266.66px -266.66px; }
+.me_15 { height: 133.33px; width: 133.33px; background-position: -399.99px -266.66px; }
+.me_16 { height: 133.33px; width: 133.33px; background-position: -533.32px -266.66px; }
+.me_17 { height: 133.33px; width: 133.33px; background-position: -666.65px -266.66px; }
+
+/* ======== ANIMAÇÕES ======== */
+.prevent_click {
+  pointer-events: none;
+}
+
+.correct {
+  border-radius: 0px;
+  box-shadow: 0 0 0 transparent, 0 0 0 transparent;
+  animation: corect 0.5s ease;
+  animation-delay: 0.2s;
+}
+
+@keyframes corect {
+  0% {
+    transform: scale(1);
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+  50% {
+    transform: scale(1.25);
+    border-radius: 5px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+  100% {
+    transform: scale(1);
+    border-radius: 0px;
+    box-shadow: 0 0 0 transparent, 0 0 0 transparent;
+  }
+}
+
+/* ======== MINIATURAS DE IMAGENS ======== */
+.pre_img {
+  margin-top: 10px;
+  width: 100%;
+  position: relative;
+  left: 100px;
+}
+
+.pre_img li {
+  display: inline-block;
+  list-style: none;
+}
+
+.pre_img li img {
+  width: 150px;
+  height: 75px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* ======== TELA DE RESULTADO ======== */
+.cover {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.38);
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.score {
+  margin: 13% auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #666;
+  width: 300px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+#scr_head, #scr_time, #scr_moves {
+  text-align: center;
+  font-weight: 600;
+  font-family: cursive;
+  color: #3d3d3d;
+}
+
+#scr_head { font-size: 30px; }
+#scr_time, #scr_moves { font-size: 22px; }
+
+.start {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 18px 45px;
+}
+
+.reset {
+  position: absolute;
+  margin: 0 auto;
+  padding: 18px 45px;
+  left: 50%;
+  transform: translate(-50%, 120px);
+}
+
+.OK {
+  padding: 8px 25px;
+  float: right;
+  cursor: pointer;
+}
+
+.button {
+  margin: 0px 10px 10px 0px;
+  border-radius: 10px;
+  font-family: cursive;
+  font-size: 25px;
+  color: #FFF;
+  text-decoration: none;
+  background-color: #99be5f;
+  border-bottom: 5px solid #99be5f;
+  text-shadow: 0px -2px #99be5f;
+  z-index: 999;
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.button:active {
+  border-bottom: 1px solid #99be5f;
+}
+
+.i {
+  text-align: center;
+  font-family: cursive;
+  font-weight: 550;
+  color: #3c3c3c;
+}
