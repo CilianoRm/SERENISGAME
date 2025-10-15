@@ -8,53 +8,92 @@
   <link rel="stylesheet" href="./style.css">
 
   <style>
-    /* --- Centralizar logo --- */
     .logo-container {
       display: flex;
       justify-content: center;
       align-items: center;
       margin-top: 20px;
-      margin-bottom: 40px; /* <-- aumenta o espaço entre a logo e o jogo */
+      margin-bottom: 40px;
     }
 
     .logo-container img {
-      max-width: 200px;
+      max-width: 500px;
       height: auto;
     }
 
-    /* --- opcional: garantir que o jogo fique abaixo da logo --- */
     #container {
       margin-top: 20px;
+    }
+
+    /* NOVO: Estilo para imagem de referência */
+    .reference-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .reference-container h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    #reference-image {
+      max-width: 300px;
+      border: 2px solid #ccc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
   </style>
 </head>
     
 <body>
-  <!-- Logo central superior -->
   <div class="logo-container">
     <img src="https://i.ibb.co/HD4xPmM2/Whats-App-Image-2025-10-13-at-19-44-41.jpg" alt="Logo do jogo">
   </div>
 
-  <div id="container">	
+  <div id="container">  
     <div id="timer">Tempo restante: 1:30</div>
 
-    <a href="#" class="button start">Start</a>
-    <div class="box">	
+    <a href="#" class="button start">Jogar</a>
+    <div class="box">   
       <div class="me full"></div>
     </div>
-    <div align="center">
-      <a href="#" class="button reset" align="center">Reset</a>
+
+    <!-- NOVO: Imagem de referência -->
+    <div class="reference-container">
+      <h3>Imagem de referência:</h3>
+      <img id="reference-image" src="" alt="Imagem original">
     </div>
   </div>
 
   <div class="cover">
-    <div class="score">
-      <p id="scr_head"> &#9875 Puzzel Solved &#9875</p>
-      <p id="scr_time"> Time : <span id="min">00</span> Min <span id="sec">00</span> Sec</p>
-      <p id="scr_moves"> Moves : <span id="moves"></span></p>
-      <p class="i">developed by mayur birle</p>
-      <div class="button OK">OK</div>
+  <div class="score">
+    <p id="scr_head">Parabéns</p>
+    <p id="scr_time">Tempo: <span id="min">00</span> Min <span id="sec">00</span> Sec</p>
+    <p id="scr_moves">Movimento: <span id="moves"></span></p>
+
+    <!-- 🎁 Caixa Surpresa integrada -->
+    <div class="explosion-animation"></div>
+    <div class="voucher-content">
+      <h3>🎁 Você ganhou um voucher!</h3>
+      <p id="voucher-text"></p>
+      <p class="validity">Válido por 30 dias</p>
     </div>
+
+    <div class="button OK">OK</div>
+  </div>
+</div>
+
+	
+	<div class="cover-lost">
+  <div class="score">
+    <p id="scr_head_lost">⏱️ Que pena!</p>
+    <p id="scr_time_lost">O tempo acabou e o puzzle não foi resolvido.</p>
+    <div class="button try-again">Tentar novamente</div>
+    <div class="button exit-game">Sair do jogo</div>
+  </div>
+</div>
+<button id="bug-button" title="Reportar bug ou reiniciar">🐞</button>
+
   </div>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
