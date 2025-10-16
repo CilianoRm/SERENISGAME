@@ -1,8 +1,8 @@
 const voucherStock = {
-  "20% de desconto em massagens e drenagens": 20,
-  "30% de desconto em pilates": 2,
-  "30% de desconto em yoga": 2,
-  "100% de desconto em massagens e drenagens": 5
+  "20% de desconto em massagens e drenagens": 24,
+  "30% de desconto em pilates": 4,
+  "30% de desconto em yoga": 4,
+  "100% de desconto em massagens e drenagens": 7
 };
 
 
@@ -161,10 +161,10 @@ $(document).ready(function () {
 
     function preencherVoucher() {
   const estoque = {
-    "20% de desconto em massagens e drenagens": 20,
-    "30% de desconto em pilates": 2,
-    "30% de desconto em yoga": 2,
-    "100% de desconto em massagens e drenagens": 5
+    "20% de desconto em massagens e drenagens": 24,
+  "30% de desconto em pilates": 4,
+  "30% de desconto em yoga": 4,
+  "100% de desconto em massagens e drenagens": 7
   };
 
   // Gera uma lista com base no estoque
