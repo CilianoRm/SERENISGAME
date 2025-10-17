@@ -77,6 +77,15 @@ $(document).ready(function () {
         Start();
         return 0;
     });
+	
+	function preloadImages(imageArray) {
+  $(imageArray).each(function () {
+    $('<img/>')[0].src = this;
+  });
+}
+
+preloadImages(images);
+
 
     function drawVoucher() {
   const available = Object.entries(voucherStock)
